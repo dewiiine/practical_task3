@@ -13,6 +13,7 @@ public class BaseTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://localhost:8080/");
+
     }
 
     @AfterEach
