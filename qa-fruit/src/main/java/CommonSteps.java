@@ -5,8 +5,6 @@ import pages.ProductListPage;
 public class CommonSteps {
     private final WebDriver driver;
 
-//    private BasePage currentPage;
-
     private MainPage mainPage;
     private ProductListPage productListPage;
 

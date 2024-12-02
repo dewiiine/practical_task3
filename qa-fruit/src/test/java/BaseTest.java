@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BaseTest {
     protected WebDriver driver;
+    protected DatabaseSteps databaseSteps;
 
     @BeforeEach
     public void setUp() {
@@ -14,10 +15,14 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.get("http://localhost:8080/");
 
+        databaseSteps = new DatabaseSteps();
+
     }
 
     @AfterEach
     public void tearDown() {
+        databaseSteps.closeConnection();
+
         if (driver != null) {
             driver.quit();
         }
