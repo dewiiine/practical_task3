@@ -46,6 +46,8 @@ public class ProductListPage extends BasePage {
      * Кнопка "Сохранить"
      */
     public void buttonSaveClick() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(buttonSave));
         buttonSave.click();
     }
 
