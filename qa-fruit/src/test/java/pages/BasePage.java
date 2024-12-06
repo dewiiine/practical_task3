@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+
 public abstract class BasePage {
     protected WebDriver driver;
 
@@ -17,6 +18,9 @@ public abstract class BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * Выборка в выпадающем списке
+     */
     public void selectSandboxItem(String itemName) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         WebElement buttonSandbox = wait.until(ExpectedConditions.elementToBeClickable(By.id("navbarDropdown")));

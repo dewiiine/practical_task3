@@ -29,6 +29,9 @@ public class ProductListPage extends BasePage {
         super(driver);
     }
 
+    /**
+     * Кнопка "Добавить"
+     */
     public void buttonAddClick() {
         buttonAdd.click();
     }
@@ -39,23 +42,36 @@ public class ProductListPage extends BasePage {
         productNameField.sendKeys(productName);
     }
 
+    /**
+     * Кнопка "Сохранить"
+     */
     public void buttonSaveClick() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(buttonSave));
         buttonSave.click();
     }
 
+    /**
+     * Заполнить "Тип" товара
+     */
     public void selectProductType(String productType) {
         itemTypeDropDown.click();
         itemTypeDropDown.findElement(By.xpath(String.format("./option[text()='%s']", productType))).click();
     }
 
+    /**
+     * Получить список товаров
+     */
     public List<WebElement> getProducts() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//tbody/tr")));
         return driver.findElements(By.xpath("//tbody/tr"));
     }
 
-    public boolean
-    assertNewElement(String name, String type, boolean exotic) {
+    /**
+     * Проверка нового товара
+     */
+    public boolean assertNewElement(String name, String type, boolean exotic) {
         List<WebElement> productList = getProducts();
         List<WebElement> lastElement = productList.get(productList.size() - 1).findElements(By.xpath("./td"));
         String actualName = lastElement.get(0).getText();
@@ -66,9 +82,7 @@ public class ProductListPage extends BasePage {
     }
 
     /**
-     * Активировать чекбокс в зависимости от получаемого значения.
-     *
-     * @param isExotic
+     * Активировать чекбокс в зависимости от получаемого значения
      */
     public void selectExotic(boolean isExotic) {
         if (isExotic) {
